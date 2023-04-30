@@ -1,19 +1,21 @@
 <script>
 import Intro from "./Intro.vue"
 import Quiz from "./Quiz.vue"
+import Conc from "./Conc.vue"
 
 export default{
     data(){
         return{
-            count: 6,
+            count: 4,
             started: false,
-            countClass: ""
+            countClass: "",
+            finished: false
         }
     },
     props: {
     },
     components: {
-        Intro, Quiz
+        Intro, Quiz, Conc
     },
     methods: {
         countDownTimer () {
@@ -36,9 +38,10 @@ export default{
 
 <template>
     <Intro @startQuiz="this.countDownTimer()" v-if="!started"></Intro>
-    <Quiz v-if="started"></Quiz>
+    <Quiz v-if="started && !finished" @finish="this.finished = true"></Quiz>
+    <Conc v-if="finished"></Conc>
 
-    <div v-if="count!=6 && count!=0" id="countdown" :class="countClass">{{ count }} </div>
+    <div v-if="count!=4 && count!=0" id="countdown" :class="countClass">{{ count }} </div>
 </template>
 
 
@@ -60,8 +63,8 @@ export default{
     }
 
     @keyframes example {
-  0%   {background-color: rgb(0, 52, 165);}
-  100% {background-color: rgb(64, 147, 224);}
+  0%   {background-color: rgb(255, 232, 183);}
+  100% {background-color: rgb(224, 141, 64);}
 }
 
     .animated{

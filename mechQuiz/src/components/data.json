@@ -1,10 +1,75 @@
+
 [
     {
-        "question": "",
-        "Answers": ["", "", "", ""],
-        "Correct": 0
+        "question": "Which is a correct statement about a vector quantity?",
+        "answers": ["Has direction only", "Has direction and magnitude", "Has magnitude only", "Has neither magnitude nor direction"],
+        "correct": 1,
+        "time": 30
     },
     {
-        
+        "question": "What is the mass of a cart that has an acceleration of 5&nbsp;m/s<sup>2</sup> when a net force of 2000&nbsp;N is applied to it?",
+        "answers": ["10,000 kg", "2000 kg", "1000 kg", "400 kg"],
+        "correct": 3,
+        "time": 90
+    },
+    {
+        "question": "What is the unit of momentum?",
+        "answers": ["J/s", "kg*m/s", "N*m", "m/s<sup>2</sup>"],
+        "correct": 1,
+        "time": 30
+    },
+    {
+        "question": "A 58.4&nbsp;kg person is skating on Meech Lake when the ice is perfectly smooth. The wind blows horizontally from directly behind the skater with a force of 226&nbsp;N. What is the magnitude of the skater's acceleration across the ice?",
+        "answers": ["0.258 m/s<sup>2</sup>","3.87 m/s<sup>2</sup>", "1.32 m/s<sup>2</sup>", "7.58 m/s<sup>2</sup>"],
+        "correct": 1,
+        "time": 60
+    },
+    {
+        "question": "James Bond is hanging from a rope from a small plane which is flying horizontally and accelerating at 1.05&nbsp;m/s<sup>2</sup>. James's mass is 89.8&nbsp;kg and he experiences air resistance horizontally of magnitude 366&nbsp;N. What is the magnitude of the tension?",
+        "answers": ["460 m/s<sup>2</sup>", "886 m/s<sup>2</sup>", "994 m/s<sup>2</sup>", "881 m/s<sup>2</sup>"],
+        "correct": 2,
+        "time": 300
+    },
+    {
+        "question": "An object of mass 49.5&nbsp;g is attached to a massless string of length 23.5&nbsp;cm. The object is swung in a circle at the end of this string, which makes an angle with the vertical equal to 59.5°. Calculate the tension in the cord.",
+        "answers": ["0.957 N", "0.486 N", "0.246 N", "0.564 N"],
+        "correct": 0,
+        "time": 240
+    },
+    {
+        "question": "Two people, the first of mass 85.0&nbsp;kg and the other of mass 65.4 kg, are drifting in space far from any other object. At a given moment, there is a distance 6.21&nbsp;m between them. Calculate the gravitational force attracting both individuals (The universal gravitational constant is 6.6743*10<sup>-11</sup>).",
+        "answers": ["5.97*10<sup>-8</sup>", "1.13*10<sup>-10</sup>", "1.47*10<sup>-10</sup>", "9.62*10<sup>-9</sup>"],
+        "correct": 3,
+        "time": 180
+    },
+    {
+        "question": "A 21.1&nbsp;kg dog finds itself on an asteroid of mass 1.61&nbsp;x&nbsp;10<sup>17</sup> kg and diameter 75.1&nbsp;km. Calculate the magnitude of the gravitational acceleration felt by the dog (The universal gravitational constant is 6.6743*10<sup>-11</sup>).",
+        "answers": ["9.99 mm/s<sup>2</sup>", "2.86 mm/s<sup>2</sup>", "7.62 mm/s<sup>2</sup>", "12.3 mm/s<sup>2</sup>"],
+        "correct": 2,
+        "time": 240
+    },
+    {
+        "question": "A ball of mass 40.6&nbsp;g is dropped from a height of 7.02&nbsp;m above the floor, where objects on the floor are taken to have zero gravitational potential energy. What is the speed of the ball when it hits the ground? Assume there is no air resistance.",
+        "answers": ["11.7 m/s", "8.30 m/s", "16.6 m/s", "137 m/s"],
+        "correct": 0,
+        "time": 180
+    },
+    {
+        "question": "A person pushes a large box of mass 13.5&nbsp;kg across a horizontal floor at a constant speed of 2.44&nbsp;m/s while expending a power of 234&nbsp;W. The person pushes the box downward and forward at an angle of 13.9° with the horizontal. What is the magnitude of the force the person is pushing the box?",
+        "answers": ["17.3 N", "95.9 N", "93.1 N", "98.8 N"],
+        "correct": 1,
+        "time": 240
+    },
+    {
+        "question": "A ball of mass 677&nbsp;g is dropped from a height of 1.09 m above the floor, bounces, and rebounds to a height of 0.589&nbsp;m above the floor. It is in contact with the floor for 14.3&nbsp;ms. Calculate the average force felt by the ball when it hits the ground. Assume there is no air resistance.",
+        "answers": ["543 N", "219 N", "561 N", "380 N"],
+        "correct": 3,
+        "time": 420
+    },
+    {
+        "question": "An object of mass 204&nbsp;kg is travelling in space in a straight line at a speed of 5.89&nbsp;km/s when it suddenly breaks into two smaller pieces. After the breakup of the object, the first of its pieces is found to have a speed of 8.69&nbsp;km/s and the second a speed of 1.78&nbsp;km/s. Both pieces continue travelling in the same direction as the original object. What is the mass of the second piece?",
+        "answers": ["40.5 kg", "65.7 kg", "82.7 kg", "165 kg"],
+        "correct": 2,
+        "time": 300
     }
 ]

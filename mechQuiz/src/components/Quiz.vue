@@ -1,8 +1,31 @@
 
 <template>
-    <div id="quizPage">
+    <div id="quizPage" :class="color">
+        <div class="countdown" v-if="!answered">
+            <span id="count-text">Time left: {{ timeLeft }}</span>
+        </div>
+
+        <div class="counter">
+            <span>Correct: {{ right }}</span><br/>
+            <span>Incorrect: {{ wrong }}</span>
+        </div>
+
         <div class="container">
-            <div class="question-text"></div>
+            <div>
+                <p class="question-text" v-html="question"></p>
+            </div>
+            <div class="choices list-group">
+                <Choice v-on:answered="submit" v-for="(answer, index) in answers" :correct="index==correct" :text=answer :order=index :clickable="!answered"></Choice>
+            </div>
+
+            <div class="d-grid" v-if="answered">
+                <button @click="swap" class="btn btn-outline-light">Proceed</button>
+                <h1>{{ display() }}</h1>
+            </div>
+            
+            <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" :style="{width: progress + '%'}"></div>
+            </div>
         </div>
 
         
@@ -11,21 +34,114 @@
 
 <script>
 import Choice from "./Choice.vue"
+import qArray from "./data.json"
 
 
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
 
 
 export default{
+    created(){
+        console.log("Quiz Loaded.")
+        this.qOrder = shuffle(qArray)
+        this.question = this.qOrder[0]["question"] //First question asked
+        console.log(this.question)
+        this.answers = this.qOrder[0]["answers"] //Answers Displayed
+        this.correct = this.qOrder[0]["correct"] //Correct answer, in index of array
+        this.timeLeft = this.qOrder[0]["time"] //set amount of time user has to answer question
+
+        this.countDownTimer()
+    },
     components: {
         Choice
     },
     data(){
         return{
-            question: ""
+            question: "",
+            qOrder: [],
+            answers: [],
+            correct: 0,
+            answered: false,
+            qNum: 0,
+            right: 0,
+            wrong: 0,
+            color: "",
+            valid: false,
+            timeLeft: 0,
+            progress: 0
         }
     },
     methods: {
+        submit(i){
+            console.log(i)
+            if(this.correct==i){
+                console.log("Correct!")
+                this.right += 1
+                this.color = "green"
+                this.valid = true
+            }
+            else{
+                console.log("Wrong! It was " + String(this.correct))
+                this.wrong += 1
+                this.color = "red"
+                this.valid = false
+            }
+            this.answered = true
+        },
         swap(){
+            if(!(this.qNum >= this.qOrder.length)){
+                console.log("swap!")
+                this.qNum += 1
+                this.question = this.qOrder[this.qNum]["question"]
+                this.answers = this.qOrder[this.qNum]["answers"]
+                this.correct = this.qOrder[this.qNum]["correct"]
+                this.timeLeft = this.qOrder[this.qNum]["time"]
+                this.progress = (this.qNum) * 100 / this.qOrder.length
+
+                this.answered = false
+                this.color = ""
+                
+                this.countDownTimer()
+            } else {
+                this.$emit("finish")
+            }
+        },
+        display(){
+            if(this.valid){
+                return("That is correct!")
+            }
+            else{
+                return("Incorrect!")
+            }
+        },
+        countDownTimer () {
+            if(!this.answered){
+                if (this.timeLeft > 0) {
+                    setTimeout(() => {
+                        this.timeLeft -= 1
+                        this.countDownTimer()
+                    }, 1000)
+                }
+                if (this.timeLeft == 0){
+                    this.submit(-1)
+                }
+            }
             
         }
     }
@@ -34,6 +150,7 @@ export default{
 </script>
 
 <style>
+
     #quizPage{
         height: 100vh;
         width: 100%;
@@ -42,6 +159,59 @@ export default{
         justify-content: center;
         align-items: center;
         color: white;
+        transition-duration: 0.2s;
+    }
+    
+    .red{
+        background-color: rgb(65, 30, 30) !important;
+    }
+    .green{
+        background-color: rgb(44, 87, 44) !important;
+    }
+
+    .countdown{
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+    }
+    @keyframes counts{
+        from {color: white;}
+        to {color: red;}
+    }
+    #count-text{
+        font-size: 50px;
+        animation-name: counts;
+        animation-duration: 1s;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+    }
+
+
+    .counter{
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .question-text{
+        text-align: center;
+        font-size: 30px;
+    }
+    .choices{
+        margin-bottom: 1rem;
+    }
+    h1{margin-bottom: 2rem;}
+    .d-grid{
+        text-align: center;
+    }
+    .btn-outline-light{
+        margin-bottom: 1.5rem;
+    }
+
+    #progress{
+        position: absolute;
+        bottom: 0;
+
     }
 
 
