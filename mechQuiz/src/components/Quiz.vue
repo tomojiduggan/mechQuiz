@@ -105,7 +105,9 @@ export default{
             this.answered = true
         },
         swap(){
-            if(!(this.qNum >= this.qOrder.length)){
+            console.log(this.qNum)
+            console.log(this.qOrder.length)
+            if(!(this.qNum == this.qOrder.length-1)){
                 console.log("swap!")
                 this.qNum += 1
                 this.question = this.qOrder[this.qNum]["question"]
@@ -119,7 +121,7 @@ export default{
                 
                 this.countDownTimer()
             } else {
-                this.$emit("finish")
+                this.$emit("finish", {"correct": this.right, "incorrect": this.wrong})
             }
         },
         display(){

@@ -9,7 +9,9 @@ export default{
             count: 4,
             started: false,
             countClass: "",
-            finished: false
+            finished: false,
+            correct: 0,
+            incorrect: 0
         }
     },
     props: {
@@ -30,6 +32,11 @@ export default{
                 this.started = true
             }
             
+        },
+        conclude(payload){
+            this.correct = payload["correct"]
+            this.incorrect = payload["incorrect"]
+            this.finished = true
         }
     },
 
@@ -38,8 +45,8 @@ export default{
 
 <template>
     <Intro @startQuiz="this.countDownTimer()" v-if="!started"></Intro>
-    <Quiz v-if="started && !finished" @finish="this.finished = true"></Quiz>
-    <Conc v-if="finished"></Conc>
+    <Quiz v-if="started && !finished" @finish="conclude"></Quiz>
+    <Conc v-if="finished" :correct="correct" :incorrect="incorrect"></Conc>
 
     <div v-if="count!=4 && count!=0" id="countdown" :class="countClass">{{ count }} </div>
 </template>
