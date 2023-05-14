@@ -1,13 +1,15 @@
 
 <template>
     <div id="quizPage" :class="color">
-        <div class="countdown" v-if="!answered">
-            <span id="count-text">Time left: {{ timeLeft }}</span>
-        </div>
+        <div id="count-contain">
+            <div class="countdown" v-if="!answered">
+                <span id="count-text">Time left: {{ timeLeft }}</span>
+            </div>
 
-        <div class="counter">
-            <span>Correct: {{ right }}</span><br/>
-            <span>Incorrect: {{ wrong }}</span>
+            <div class="counter">
+                <span>Correct: {{ right }}</span><br/>
+                <span>Incorrect: {{ wrong }}</span>
+            </div>
         </div>
 
         <div class="container">
@@ -159,7 +161,6 @@ export default{
         background-color: rgb(37, 37, 37);
         display: flex;
         justify-content: center;
-        align-items: center;
         color: white;
         transition-duration: 0.2s;
     }
@@ -171,10 +172,17 @@ export default{
         background-color: rgb(44, 87, 44) !important;
     }
 
-    .countdown{
+    #count-contain{
         position: absolute;
-        top: 2rem;
-        left: 2rem;
+        width: 100vw;
+        height: 10vh;
+        top: 0;
+        
+    }
+    .countdown{
+        position: relative;
+        width: 50%;
+        padding: 2rem
     }
     @keyframes counts{
         from {color: white;}
@@ -191,10 +199,15 @@ export default{
 
     .counter{
         position: absolute;
-        top: 2rem;
-        right: 2rem;
+        padding: 2rem;
+        right: 0;
+        top: 0;
     }
 
+    .container{
+        position: relative;
+        margin-top: 14vh;
+    }
     .question-text{
         text-align: center;
         font-size: 30px;
